@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, Navigate , useNavigate, useLocation} from 'react-router-dom';
 import  { assets } from '../assets/assets';
 import { useClerk, UserButton, useUser} from '@clerk/clerk-react';
+import { useState } from 'react';
 
 const BookIcon = () => (
     <svg className="w-4 h-4 text-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" >
@@ -18,8 +19,8 @@ const Navbar = () => {
 
    
 
-    const [isScrolled, setIsScrolled] = React.useState(false);
-    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const [isScrolled, setIsScrolled] =useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const {openSignIn } = useClerk()
     const {user } = useUser()
@@ -27,13 +28,22 @@ const Navbar = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    React.useEffect(() => {
+    useEffect(() => {
+        if(location.pathname !== '/') {
+            setIsScrolled(true);
+            return
+        }else{
+            setIsScrolled(false);
+        }
+        setIsScrolled(prev => location.pathname !== '/' ? true : prev)
+
+
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 10);
         };
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [location.pathname]);
 
     return (
       
