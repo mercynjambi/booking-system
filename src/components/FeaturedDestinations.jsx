@@ -10,7 +10,7 @@ const FeaturedDestinations = () => {
 
   return (
     <div className='flex flex-col items-center px-6 md:px-16 lg:px-24 bg-slate-50 py-20' >
-        <Title title='Featured Destinations' subTitle="Tembea keya ujione mengi sana kutoka rais mwomggo na vjan wazuri wa gen z..ayayaya you must be ready"/>
+        <Title title='Featured Destinations' subTitle="Discover our handpicked selection of exceptional  properties around the world , offering unparalleled luxury and unforgetable experiences."/>
 
 
         <div className='flex flex-wrap items-center justify-center gap-6 mt-20'  > 
